@@ -32,10 +32,9 @@ public class RecipeBook
     // EXERCISE 5: Add constructor that accepts only (string name)
     // and chains to the above with default capacity 10
     // Currently this stub doesn't chain - fix it!
-    public RecipeBook(string name)
+
+    public RecipeBook(string name) : this(name, 10)
     {
-        Name = name;
-        meals = new List<Meal>();
     }
 
     public void AddMeal(Meal meal)
@@ -75,4 +74,6 @@ public class RecipeBook
     {
         return new List<Meal>(meals);
     }
+
+    public int maxPrepTime()
 }
