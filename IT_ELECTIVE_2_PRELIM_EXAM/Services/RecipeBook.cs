@@ -55,15 +55,30 @@ public class RecipeBook
     // Currently this stub returns empty - fix it!
     public List<Meal> Search(string term, string category)
     {
-        return new List<Meal>();
+        List<Meal> results = new List<Meal>();
+
+        foreach (Meal meal in meals)
+        {
+            if (meal.Name.ToLower().Contains(term.ToLower()) &&
+                meal.Category.ToLower() == category.ToLower())
+            {
+                results.Add(meal);
+            }
+        }
+        return results;
     }
 
     // EXERCISE 6: Add overload Search(int maxPrepTime)
     // Currently this stub returns empty - fix it!
+    
+  
+
     public List<Meal> Search(int maxPrepTime)
     {
         return new List<Meal>();
     }
+
+
 
     public int GetMealCount()
     {
@@ -74,6 +89,5 @@ public class RecipeBook
     {
         return new List<Meal>(meals);
     }
-
-    public int maxPrepTime()
 }
+
