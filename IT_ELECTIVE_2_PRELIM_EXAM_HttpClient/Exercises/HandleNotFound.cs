@@ -16,11 +16,24 @@ public static class HandleNotFound
 {
     public static async Task Run(System.Net.Http.HttpClient client)
     {
+        var response = await client.GetAsync("https://themealdb.com/api/json/v1/1/lookup.php?i=999999");
+
+        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+        {
+            throw new Exception($"Expected 200 OK but got {response.StatusCode}");
+        }
+
+        var json = await response.Content.ReadAsStringAsync();
+        using var document = System.Text.Json.JsonDocument.Parse(json);
+        var meals = document.RootElement.GetProperty("meals");
+
+        if (meals.ValueKind != System.Text.Json.JsonValueKind.Null)
+        {
+            throw new Exception("Expected meals field to be null, but it contains data.");
+        }
         // TODO: Send GET request to https://themealdb.com/api/json/v1/1/lookup.php?i=999999
         // TODO: Assert status code is 200 OK
         // TODO: Parse the response JSON
         // TODO: Assert that "meals" field is null (not found)
-
-        throw new NotImplementedException();
     }
 }
