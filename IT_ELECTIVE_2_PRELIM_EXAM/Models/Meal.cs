@@ -61,4 +61,5 @@ public class Meal
     {
         return $"Meal: {Name} | Category: {Category} | Area: {Area}";
     }
+
 }
