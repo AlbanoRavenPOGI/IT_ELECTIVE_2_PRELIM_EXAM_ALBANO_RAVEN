@@ -13,9 +13,15 @@ public static class DeleteReview
 {
     public static async Task Run(System.Net.Http.HttpClient client)
     {
+        var url = "https://jsonplaceholder.typicode.com/posts/1";
+
+        var response = await client.DeleteAsync(url);
+
+        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+        {
+            throw new Exception($"Expected status code 200 OK but got {response.StatusCode}");
+        }
         // TODO: Send DELETE request to https://jsonplaceholder.typicode.com/posts/1
         // TODO: Assert status code is 200 OK
-
-        throw new NotImplementedException();
     }
 }
