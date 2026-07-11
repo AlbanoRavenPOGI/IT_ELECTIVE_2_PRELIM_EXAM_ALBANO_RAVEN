@@ -22,6 +22,7 @@ public class Ingredient
             _name = value;
         }
     }
+
     public string Measure { get; set; }
 
     public double Quantity
