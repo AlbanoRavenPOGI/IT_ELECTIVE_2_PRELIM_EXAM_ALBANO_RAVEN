@@ -29,4 +29,5 @@ public class QuickRecipe : RecipeBase
     {
         return $"{base.GetRecipeInfo()} | Quick: Under {MaxMinutes} min";
     }
+
 }
