@@ -1,4 +1,5 @@
 using IT_ELECTIVE_2_PRELIM_EXAM.Interfaces;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace IT_ELECTIVE_2_PRELIM_EXAM.Models;
@@ -15,7 +16,7 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM.Models;
 // - Implement the SearchCriteria property (return the Title)
 // - Implement the MatchesSearch(string searchTerm) method (check if searchTerm is in Title, case-insensitive)
 
-public class MealRecipe : RecipeBase //, IRecipeSearchable  <-- EXERCISE 9: Uncomment this
+public class MealRecipe : RecipeBase, IRecipeSearchable  
 {
     // EXERCISE 7: These properties need to be wired up properly
     // Currently they're stubs that don't store values correctly
@@ -54,4 +55,10 @@ public class MealRecipe : RecipeBase //, IRecipeSearchable  <-- EXERCISE 9: Unco
     // EXERCISE 9: Implement IRecipeSearchable interface methods here
     // public string SearchCriteria => ???
     // public bool MatchesSearch(string searchTerm) => ???
+
+    public string SearchCriteria => Title;
+    public bool MatchesSearch(string searchTerm)
+    {
+        return Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase);
+    }
 }
